@@ -1,4 +1,5 @@
-import { createStackNavigator, createAppContainer} from 'react-navigation';
+import { createAppContainer} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import SearchScreen from './src/screens/SearchScreen';
 
 
@@ -7,7 +8,7 @@ const navigator = createStackNavigator({
 }, {
   initialRoutName: 'Search',
   defaultNavigationOptions:{
-    title: 'BusinessSearch'
+    title: 'Bali Restaurant Search'
   }
 });
 

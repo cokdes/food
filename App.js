@@ -8,7 +8,7 @@ const navigator = createStackNavigator({
 }, {
   initialRoutName: 'Search',
   defaultNavigationOptions:{
-    title: 'BusinessSearch'
+    title: 'Bali Restaurant Search'
   }
 });
 

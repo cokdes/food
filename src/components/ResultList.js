@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import ResultsDetail from './ResultsDetail';
 
-const ResultList = ({ title, results }) => {
+const ResultList = ({ title, results, navigation }) => {
     //console.log(results);
     return (
         <View style={styles.container}>
@@ -13,7 +13,11 @@ const ResultList = ({ title, results }) => {
                 data={results}
                 keyExtractor={(result) => result.restaurant.id}
                 renderItem={({ item }) => {
-                    return <ResultsDetail result={ item }/>;
+                    return (
+                    <TouchableOpacity onPress={() => navigation.navigate('ResultsShow')}>
+                        <ResultsDetail result={ item }/>
+                    </TouchableOpacity>
+                    );
                 }}
             /> : "Not found"}
         </View>
@@ -22,8 +26,8 @@ const ResultList = ({ title, results }) => {
 
 const styles = StyleSheet.create({
     container:{
-        marginLeft:15,
-        marginTop:8
+        marginLeft: 15,
+        marginBottom: 8
     },
     titleStyle:{
         fontSize:20,

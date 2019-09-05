@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar';
 import useResult from '../hooks/useResults'
 import ResultList from '../components/ResultList';
@@ -8,7 +8,11 @@ const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResult();
 
-    console.log(results);
+    const filterResultsByPrice = (price) => {
+        return results.filter(result =>{
+            return result.restaurant.price_range === price;
+        });
+    };
 
     return (
         <View>
@@ -18,10 +22,12 @@ const SearchScreen = () => {
             onTermSubmit={() => searchApi(term)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <Text>We have found {results.length} results</Text>
-            <ResultList title="Cost Effective"/>
-            <ResultList title="Bit Pricier"/>
-            <ResultList title="Big Spender"/>
+            <ScrollView>
+                <ResultList results={filterResultsByPrice(1)} title="Cost Effective"/>
+                <ResultList results={filterResultsByPrice(2)} title="Bit Pricier"/>
+                <ResultList results={filterResultsByPrice(3)} title="Big Spender"/>
+                <ResultList results={filterResultsByPrice(4)} title="Sultan"/>
+            </ScrollView>
         </View>
     )
 }

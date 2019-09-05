@@ -6,14 +6,13 @@ export default () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const searchApi = async (searchTerm) => {
-        console.log("hi there!")
         try{
             const response = await zomato.get('/search', {
                 params: {
                     entity_id: 170,
                     entity_type: 'city',
-                    sort:'cost',
-                    order:'asc',
+                    sort:'rating',
+                    order:'desc',
                     q : searchTerm,
                 }
             });
@@ -25,7 +24,7 @@ export default () => {
 
     //call API when component first rendered
     useEffect(() => {
-        searchApi('pasta')
+        searchApi()
     }, [])
 
     return [searchApi, results, errorMessage];
